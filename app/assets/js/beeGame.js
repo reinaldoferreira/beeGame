@@ -4,6 +4,11 @@ function Bee(name, kind, healthPoints) {
   this.healthPoints = healthPoints;
 }
 
+Bee.prototype.decreaseHP = function (pointsToDecrease) {
+  return this.healthPoints -= pointsToDecrease;
+};
+
+
 function fabricOfBees(numberOfBees, name, kind, healthPoints) {
   var list = [];
 

@@ -44,3 +44,14 @@ describe('whichBeeToHit()', function() {
     expect(whichBeeToHit(listOfTesters)).toEqual(jasmine.any(Number))
   })
 })
+
+describe('Bee.prototype.decreaseHP', function() {
+  it('should decrease a bee health points', function() {
+    var testBee = new Bee("Test Bee", "tester", 100)
+    testBee.decreaseHP(12)
+    expect(testBee.healthPoints).toEqual(88)
+    testBee.decreaseHP(12)
+    testBee.decreaseHP(12)
+    expect(testBee.healthPoints).toEqual(64)
+  })
+})
