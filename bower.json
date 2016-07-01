@@ -1,0 +1,26 @@
+{
+  "name": "beeGame",
+  "homepage": "https://github.com/reinaldoferreira/beeGame",
+  "authors": [
+    "Reinaldo Ferreira <reinaldocesarferreira@gmail.com>"
+  ],
+  "description": "a simple bee game to try jasmine",
+  "main": "app/index.html",
+  "keywords": [
+    "beeGame",
+    "test",
+    "jasmine",
+    "tdd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jasmine-core": "jasmine#^2.4.1"
+  }
+}
