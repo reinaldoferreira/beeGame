@@ -49,10 +49,30 @@ function attackRandomBee() {
       break;
     case 2:
       console.log('- - - Worker - - -')
-      listOfWorkers[whichBeeToHit(listOfWorkers)].decreaseHP(10)
+      var position = whichBeeToHit(listOfWorkers)
+
+      if (listOfWorkers[position].healthPoints >= 0) {
+        listOfWorkers[position].decreaseHP(10)
+
+        if (listOfWorkers[position].healthPoints <= 0) {
+          listOfWorkers.splice(position, 1)
+        }
+      } else {
+        listOfWorkers.splice(position, 1)
+      }
       break;
     default:
       console.log('- - - Drone - - -')
-      listOfDrones[whichBeeToHit(listOfDrones)].decreaseHP(12)
+      var position = whichBeeToHit(listOfDrones)
+
+      if (listOfDrones[position].healthPoints >= 0) {
+        listOfDrones[position].decreaseHP(12)
+
+        if (listOfDrones[position].healthPoints <= 0) {
+          listOfDrones.splice(position, 1)
+        }
+      } else {
+        listOfDrones.splice(position, 1)
+      }
   }
 }
