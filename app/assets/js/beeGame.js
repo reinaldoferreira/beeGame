@@ -1,6 +1,5 @@
-function Bee(name, kind, healthPoints) {
+function Bee(name, healthPoints) {
   this.name = name;
-  this.kind = kind;
   this.healthPoints = healthPoints;
 }
 
@@ -8,13 +7,12 @@ Bee.prototype.decreaseHP = function (pointsToDecrease) {
   return this.healthPoints -= pointsToDecrease;
 }
 
-
-function fabricOfBees(numberOfBees, name, kind, healthPoints) {
+function fabricOfBees(numberOfBees, name, healthPoints) {
   var list = [];
 
   for (var i = 0; i < numberOfBees; i++) {
     var beeNameHelper = i + 1
-    list[i] = new Bee(name + " " + beeNameHelper, kind, healthPoints)
+    list[i] = new Bee(name + " " + beeNameHelper, healthPoints)
   }
 
   return list
@@ -30,9 +28,9 @@ function whichBeeToHit(list) {
   return position
 }
 
-var queenBee = new Bee('Queen Bee', 'queen', 100)
-var listOfWorkers = fabricOfBees(8, "Worker Bee", "worker", 75)
-var listOfDrones = fabricOfBees(12, "Drone Bee", "drone", 50)
+var queenBee = new Bee('Queen Bee', 100)
+var listOfWorkers = fabricOfBees(8, "Worker Bee", 75)
+var listOfDrones = fabricOfBees(12, "Drone Bee", 50)
 
 function attackRandomBee() {
 
@@ -47,6 +45,7 @@ function attackRandomBee() {
         console.log('The Queen Bee died, Play again?')
       }
       break;
+
     case 2:
       console.log('- - - Worker - - -')
       var position = whichBeeToHit(listOfWorkers)
@@ -61,6 +60,7 @@ function attackRandomBee() {
         listOfWorkers.splice(position, 1)
       }
       break;
+
     default:
       console.log('- - - Drone - - -')
       var position = whichBeeToHit(listOfDrones)
