@@ -28,10 +28,6 @@ function whichBeeToHit(list) {
   return position
 }
 
-var queenBee = new Bee('Queen Bee', 100)
-var listOfWorkers = fabricOfBees(8, "Worker Bee", 75)
-var listOfDrones = fabricOfBees(12, "Drone Bee", 50)
-
 function attackRandomBee() {
 
   switch (randomNumber(3)) {
@@ -82,4 +78,14 @@ function attackRandomBee() {
         listOfDrones.splice(position, 1)
       }
   }
+}
+
+var queenBee = new Bee('Queen Bee', 100)
+var listOfWorkers = fabricOfBees(8, "Worker Bee", 75)
+var listOfDrones = fabricOfBees(12, "Drone Bee", 50)
+var btnAttack = document.getElementById("attack");
+
+btnAttack.onclick = function() {
+  console.log('atacou');
+  attackRandomBee();
 }
