@@ -37,12 +37,16 @@ function attackRandomBee() {
   switch (randomNumber(3)) {
     case 1:
       console.log('- - - Queen - - -')
-      if (queenBee.healthPoints > 0) {
-        queenBee.decreaseHP(8)
-        console.log(queenBee.healthPoints)
-        if (queenBee.healthPoints < 0) console.log('The Queen Bee died, Play again?')
+      if (randomNumber(3) === 1) {
+        if (queenBee.healthPoints > 0) {
+          queenBee.decreaseHP(8)
+          console.log('The Queen Bee has been attacked!! Now it has ' + queenBee.healthPoints)
+          if (queenBee.healthPoints < 0) console.log('The Queen Bee died, Play again?')
+        } else {
+          console.log('The Queen Bee died, Play again?')
+        }
       } else {
-        console.log('The Queen Bee died, Play again?')
+        console.log('The Queen Bee dodged your attack!');
       }
       break;
 
@@ -52,9 +56,11 @@ function attackRandomBee() {
 
       if (listOfWorkers[position].healthPoints >= 0) {
         listOfWorkers[position].decreaseHP(10)
+        console.log('The ' + listOfWorkers[position].name + ' has been attacked!! Now it has ' + listOfWorkers[position].healthPoints +' of HP');
 
         if (listOfWorkers[position].healthPoints <= 0) {
           listOfWorkers.splice(position, 1)
+          console.log('... so it is dead!')
         }
       } else {
         listOfWorkers.splice(position, 1)
@@ -64,12 +70,13 @@ function attackRandomBee() {
     default:
       console.log('- - - Drone - - -')
       var position = whichBeeToHit(listOfDrones)
-
       if (listOfDrones[position].healthPoints >= 0) {
         listOfDrones[position].decreaseHP(12)
+        console.log('The ' + listOfDrones[position].name + ' has been attacked!! Now it has ' + listOfDrones[position].healthPoints +' of HP');
 
         if (listOfDrones[position].healthPoints <= 0) {
           listOfDrones.splice(position, 1)
+          console.log('... so it is dead!')
         }
       } else {
         listOfDrones.splice(position, 1)
