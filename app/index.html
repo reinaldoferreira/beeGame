@@ -4,11 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jasmine - Bee Game</title>
+  <style media="screen">
+    .bee-test {
+      background: yellow;
+      border-radius: 100%;
+      display: inline-block;
+      height: 50px;
+      margin: 10px;
+      overflow: hidden;
+      position: relative;
+      width: 30px;
+    }
+
+    .bee-test::after,
+    .bee-test::before {
+      background: black;
+      content: '';
+      height: 10px;
+      position: absolute;
+      top: 15px;
+      width: 100%;
+    }
+
+    .bee-test::before { top: 30px; }
+  </style>
 </head>
 <body>
   <h1>Bee Game</h1>
 
-  <button type="button" name="button" id="attack">Attack!!</button>
+  <div class="bees-content"></div>
+  <button type="button" name="btn_start" id="start">Start</button>
+  <button type="button" name="btn_attack" id="attack">Attack!!</button>
   <!-- Source files -->
   <script type="text/javascript" src="assets/js/beeGame.js"></script>
 </body>
