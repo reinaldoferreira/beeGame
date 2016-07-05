@@ -20,19 +20,17 @@ function fabricOfBees(numberOfBees, name, kind, healthPoints) {
 }
 
 function randomNumber(number) {
-  var random = Math.floor((Math.random() * number) + 1)
+  var random = Math.floor((Math.random() * number))
+  console.log('random number is ' + random)
   return random
-}
-
-function whichBeeToHit(list) {
-  var beePosition = randomNumber(list.length) - 1
-  return beePosition
 }
 
 function printBees(el) {
   for (var i = 0; i < el.length; i++) {
+    var helperNumber = i + 1
     var bee = document.createElement('div')
     bee.className += 'bee'
+    bee.setAttribute('id', helperNumber)
     bee.innerHTML = '<span class="bee__head"></span><span class="bee__body"></span><span class="bee__wings"></span><span class="bee__stinger"></span>'
     document.getElementsByClassName('bees-content')[0].appendChild(bee)
   }
@@ -55,10 +53,13 @@ function getArrayOfBees() {
 }
 
 function attackRandomBee() {
-  var beePosition = whichBeeToHit(allTheBees)
+  var beePosition = randomNumber(allTheBees.length)
 
   if (allTheBees[beePosition].kind === 'queen') {
     console.log('- - - Queen - - -')
+    var bee = document.getElementById(beePosition)
+    console.log(bee)
+    console.log('inside queen ' + beePosition)
 
     if (allTheBees[beePosition].healthPoints > 0) {
       allTheBees[beePosition].decreaseHP(8)
@@ -70,6 +71,8 @@ function attackRandomBee() {
 
   } else if (allTheBees[beePosition].kind === 'worker') {
     console.log('- - - Worker - - -')
+    var bee = document.getElementById(beePosition)
+    console.log(bee)
 
     if (allTheBees[beePosition].healthPoints >= 0) {
       allTheBees[beePosition].decreaseHP(10)
@@ -78,13 +81,17 @@ function attackRandomBee() {
       if (allTheBees[beePosition].healthPoints <= 0) {
         allTheBees.splice(beePosition, 1)
         console.log('... so it is dead!')
+        document.getElementsByClassName('bees-content')[0].removeChild(bee)
       }
     } else {
       allTheBees.splice(beePosition, 1)
+      document.getElementsByClassName('bees-content')[0].removeChild(bee)
     }
 
   } else {
     console.log('- - - Drone - - -')
+    var bee = document.getElementById(beePosition)
+    console.log(bee)
 
     if (allTheBees[beePosition].healthPoints >= 0) {
       allTheBees[beePosition].decreaseHP(12)
@@ -93,9 +100,11 @@ function attackRandomBee() {
       if (allTheBees[beePosition].healthPoints <= 0) {
         allTheBees.splice(beePosition, 1)
         console.log('... so it is dead!')
+        document.getElementsByClassName('bees-content')[0].removeChild(bee)
       }
     } else {
       allTheBees.splice(beePosition, 1)
+      document.getElementsByClassName('bees-content')[0].removeChild(bee)
     }
   }
 }
