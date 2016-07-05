@@ -1,17 +1,18 @@
 describe('Bee', function() {
-  var testBee
+  var beeTest
 
   beforeEach(function() {
-    testBee = new Bee("Test Bee", 100)
+    beeTest = new Bee('Test Bee', 'test', 100)
   })
 
   it('should create an instance of Bee', function() {
-    expect(testBee).toBeDefined()
+    expect(beeTest).toBeDefined()
   })
 
   it('should set all the properties', function() {
-    expect(testBee.name).toEqual("Test Bee")
-    expect(testBee.healthPoints).toEqual(100)
+    expect(beeTest.name).toEqual('Test Bee')
+    expect(beeTest.kind).toEqual('test')
+    expect(beeTest.healthPoints).toEqual(100)
   })
 })
 
@@ -19,14 +20,14 @@ describe('fabricOfBees()', function() {
   var listOfTesters = []
 
   beforeEach(function() {
-    listOfTesters = fabricOfBees(2, "Test Bee", 100)
+    listOfTesters = fabricOfBees(2, 'Test Bee', 'test', 100)
   })
 
   it('should return an array with one or more bees', function() {
     expect(fabricOfBees()).toEqual([])
     expect(listOfTesters).toEqual([
-      jasmine.objectContaining({ name : 'Test Bee 1', healthPoints : 100 }),
-      jasmine.objectContaining({ name : 'Test Bee 2', healthPoints : 100 })
+      jasmine.objectContaining({ name : 'Test Bee 1', kind: 'test', healthPoints : 100 }),
+      jasmine.objectContaining({ name : 'Test Bee 2', kind: 'test', healthPoints : 100 })
     ])
   })
 })
@@ -38,19 +39,42 @@ describe('randomNumber()', function() {
 })
 
 describe('whichBeeToHit()', function() {
-  it('should return the position of the one bee', function() {
-    var listOfTesters = fabricOfBees(2, "Test Bee", 100)
+  it('should return the position of one bee', function() {
+    var listOfTesters = fabricOfBees(2, 'Test Bee', 'test', 100)
     expect(whichBeeToHit(listOfTesters)).toEqual(jasmine.any(Number))
   })
 })
 
 describe('Bee.prototype.decreaseHP', function() {
   it('should decrease a bee health points', function() {
-    var testBee = new Bee("Test Bee", 100)
-    testBee.decreaseHP(12)
-    expect(testBee.healthPoints).toEqual(88)
-    testBee.decreaseHP(12)
-    testBee.decreaseHP(12)
-    expect(testBee.healthPoints).toEqual(64)
+    var beeTest = new Bee('Test Bee', 'test', 100)
+    beeTest.decreaseHP(12)
+    expect(beeTest.healthPoints).toEqual(88)
+    beeTest.decreaseHP(12)
+    beeTest.decreaseHP(12)
+    expect(beeTest.healthPoints).toEqual(64)
   })
 })
+
+describe('getArrayOfBees()', function() {
+  var beeTest
+  var listOfTesters = []
+  var anotherListOfTesters = []
+
+  beforeEach(function() {
+    beeTest = new Bee('Bee Test', 'test', 100)
+    listOfTesters = fabricOfBees(2, 'Test Bee', 'test', 90)
+    anotherListOfTesters = fabricOfBees(3, 'Another Test Bee', 'test', 80)
+  })
+
+  it('should return an array with all the bees passed as arguments', function() {
+    expect(getArrayOfBees(beeTest, listOfTesters, anotherListOfTesters)).toEqual([
+      jasmine.objectContaining({ name : 'Bee Test', kind: 'test', healthPoints : 100 }),
+      jasmine.objectContaining({ name : 'Test Bee 1', kind: 'test', healthPoints : 90 }),
+      jasmine.objectContaining({ name : 'Test Bee 2', kind: 'test', healthPoints : 90 }),
+      jasmine.objectContaining({ name : 'Another Test Bee 1', kind: 'test', healthPoints : 80 }),
+      jasmine.objectContaining({ name : 'Another Test Bee 2', kind: 'test', healthPoints : 80 }),
+      jasmine.objectContaining({ name : 'Another Test Bee 3', kind: 'test', healthPoints : 80 }),
+    ])
+  });
+});

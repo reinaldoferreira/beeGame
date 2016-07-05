@@ -1,5 +1,6 @@
-function Bee(name, healthPoints) {
+function Bee(name, kind, healthPoints) {
   this.name = name
+  this.kind = kind
   this.healthPoints = healthPoints
 }
 
@@ -7,12 +8,12 @@ Bee.prototype.decreaseHP = function (pointsToDecrease) {
   return this.healthPoints -= pointsToDecrease
 }
 
-function fabricOfBees(numberOfBees, name, healthPoints) {
+function fabricOfBees(numberOfBees, name, kind, healthPoints) {
   var list = []
 
   for (var i = 0; i < numberOfBees; i++) {
     var beeNameHelper = i + 1
-    list[i] = new Bee(name + " " + beeNameHelper, healthPoints)
+    list[i] = new Bee(name + ' ' + beeNameHelper, kind, healthPoints)
   }
 
   return list
@@ -24,79 +25,91 @@ function randomNumber(number) {
 }
 
 function whichBeeToHit(list) {
-  var position = randomNumber(list.length) - 1
-  return position
+  var beePosition = randomNumber(list.length) - 1
+  return beePosition
 }
 
 function printBees(el) {
-  for (var i = 0; i < el; i++) {
-    var bee = document.createElement('span')
-    bee.className += 'bee-test'
-    document.getElementsByClassName("bees-content")[0].appendChild(bee)
+  for (var i = 0; i < el.length; i++) {
+    var bee = document.createElement('div')
+    bee.className += 'bee'
+    bee.innerHTML = '<span class="bee__head"></span><span class="bee__body"></span><span class="bee__wings"></span><span class="bee__stinger"></span>'
+    document.getElementsByClassName('bees-content')[0].appendChild(bee)
   }
+}
+
+function getArrayOfBees() {
+  var list = []
+
+  for (var i = 0; i < arguments.length; i++) {
+    if (!(arguments[i] instanceof Array)) {
+      list.push(arguments[i])
+    } else {
+      for (var j = 0; j < arguments[i].length; j++) {
+        list.push(arguments[i][j])
+      }
+    }
+  }
+
+  return list
 }
 
 function attackRandomBee() {
-  switch (randomNumber(3)) {
-    case 1:
-      console.log('- - - Queen - - -')
-      if (randomNumber(3) === 1) {
-        if (queenBee.healthPoints > 0) {
-          queenBee.decreaseHP(8)
-          console.log('The Queen Bee has been attacked!! Now it has ' + queenBee.healthPoints)
-          if (queenBee.healthPoints < 0) console.log('The Queen Bee died, Play again?')
-        } else {
-          console.log('The Queen Bee died, Play again?')
-        }
-      } else {
-        console.log('The Queen Bee dodged your attack!')
+  var beePosition = whichBeeToHit(allTheBees)
+
+  if (allTheBees[beePosition].kind === 'queen') {
+    console.log('- - - Queen - - -')
+
+    if (allTheBees[beePosition].healthPoints > 0) {
+      allTheBees[beePosition].decreaseHP(8)
+      console.log('The Queen Bee has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints)
+      if (allTheBees[beePosition].healthPoints < 0) console.log('The Queen Bee died, Play again?')
+    } else {
+      console.log('The Queen Bee died, Play again?')
+    }
+
+  } else if (allTheBees[beePosition].kind === 'worker') {
+    console.log('- - - Worker - - -')
+
+    if (allTheBees[beePosition].healthPoints >= 0) {
+      allTheBees[beePosition].decreaseHP(10)
+      console.log('The ' + allTheBees[beePosition].name + ' has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints +' of HP')
+
+      if (allTheBees[beePosition].healthPoints <= 0) {
+        allTheBees.splice(beePosition, 1)
+        console.log('... so it is dead!')
       }
-      break
+    } else {
+      allTheBees.splice(beePosition, 1)
+    }
 
-    case 2:
-      console.log('- - - Worker - - -')
-      var position = whichBeeToHit(listOfWorkers)
+  } else {
+    console.log('- - - Drone - - -')
 
-      if (listOfWorkers[position].healthPoints >= 0) {
-        listOfWorkers[position].decreaseHP(10)
-        console.log('The ' + listOfWorkers[position].name + ' has been attacked!! Now it has ' + listOfWorkers[position].healthPoints +' of HP')
+    if (allTheBees[beePosition].healthPoints >= 0) {
+      allTheBees[beePosition].decreaseHP(12)
+      console.log('The ' + allTheBees[beePosition].name + ' has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints +' of HP')
 
-        if (listOfWorkers[position].healthPoints <= 0) {
-          listOfWorkers.splice(position, 1)
-          console.log('... so it is dead!')
-        }
-      } else {
-        listOfWorkers.splice(position, 1)
+      if (allTheBees[beePosition].healthPoints <= 0) {
+        allTheBees.splice(beePosition, 1)
+        console.log('... so it is dead!')
       }
-      break
-
-    default:
-      console.log('- - - Drone - - -')
-      var position = whichBeeToHit(listOfDrones)
-      if (listOfDrones[position].healthPoints >= 0) {
-        listOfDrones[position].decreaseHP(12)
-        console.log('The ' + listOfDrones[position].name + ' has been attacked!! Now it has ' + listOfDrones[position].healthPoints +' of HP')
-
-        if (listOfDrones[position].healthPoints <= 0) {
-          listOfDrones.splice(position, 1)
-          console.log('... so it is dead!')
-        }
-      } else {
-        listOfDrones.splice(position, 1)
-      }
+    } else {
+      allTheBees.splice(beePosition, 1)
+    }
   }
 }
 
-var queenBee = new Bee('Queen Bee', 100)
-var listOfWorkers = fabricOfBees(8, "Worker Bee", 75)
-var listOfDrones = fabricOfBees(12, "Drone Bee", 50)
-var totalOfBees = listOfWorkers.length + listOfDrones.length + 1;
-var btnAttack = document.getElementById("attack")
-var btnStart = document.getElementById("start")
+var queenBee = new Bee('Queen Bee', 'queen', 100)
+var listOfWorkers = fabricOfBees(8, 'Worker Bee', 'worker', 75)
+var listOfDrones = fabricOfBees(12, 'Drone Bee', 'drone', 50)
+var btnAttack = document.getElementById('attack')
+var btnStart = document.getElementById('start')
+var allTheBees = getArrayOfBees(queenBee, listOfDrones, listOfWorkers)
 
 btnStart.onclick = function() {
   console.log('The has started')
-  printBees(totalOfBees)
+  printBees(allTheBees)
 
   document.body.removeChild(btnStart)
 }
