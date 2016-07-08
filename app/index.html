@@ -33,9 +33,20 @@
 
     .bee.queen {
       background: orange;
+      box-shadow: 0 0 18px #d6a10d;
       display: block;
-      margin: 0 auto;
+      height: 80px;
+      margin: 0 auto 20px;
+      width: 60px;
     }
+
+    .bee.queen::after,
+    .bee.queen::before {
+      height: 15px;
+      top: 21px;
+    }
+
+    .bee.queen::before { top: 45px; }
 
     .bee.drone {
       background: #ccc;
