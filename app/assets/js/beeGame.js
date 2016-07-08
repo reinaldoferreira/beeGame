@@ -32,6 +32,13 @@ function printBees(el) {
     bee.className += 'bee'
     bee.setAttribute('id', helperNumber)
     bee.innerHTML = '<span class="bee__head"></span><span class="bee__body"></span><span class="bee__wings"></span><span class="bee__stinger"></span>'
+    if (el[i].kind === 'worker') {
+      bee.className += ' worker'
+    } else if (el[i].kind === 'drone') {
+      bee.className += ' drone'
+    } else {
+      bee.className += ' queen'
+    }
     document.getElementsByClassName('bees-content')[0].appendChild(bee)
   }
 }
@@ -68,10 +75,12 @@ function attackRandomBee() {
         if (allTheBees[beePosition].healthPoints <= 0) {
           allTheBees.splice(beePosition, 1)
           console.log('... so it is dead!')
-          document.getElementsByClassName('bees-content')[0].removeChild(bee)
+          document.getElementsByClassName('bees-content')[0].innerHTML = ' '
+          printBees(allTheBees)
         }
       }
       break;
+
     case 'worker':
       console.log('- - - Worker - - -')
       var bee = document.getElementById(beePosition)
@@ -84,10 +93,12 @@ function attackRandomBee() {
         if (allTheBees[beePosition].healthPoints <= 0) {
           allTheBees.splice(beePosition, 1)
           console.log('... so it is dead!')
-          document.getElementsByClassName('bees-content')[0].removeChild(bee)
+          document.getElementsByClassName('bees-content')[0].innerHTML = ' '
+          printBees(allTheBees)
         }
       }
       break;
+
     default:
       console.log('- - - Queen - - -')
       var bee = document.getElementById(beePosition)

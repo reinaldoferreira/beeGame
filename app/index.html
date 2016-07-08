@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jasmine - Bee Game</title>
   <style media="screen">
+    .bees-content { text-align: center; }
+
     .bee {
       background: yellow;
       border-radius: 100%;
@@ -21,12 +23,23 @@
       background: black;
       content: '';
       height: 10px;
+      left: 0;
       position: absolute;
       top: 15px;
       width: 100%;
     }
 
     .bee::before { top: 30px; }
+
+    .bee.queen {
+      background: orange;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .bee.drone {
+      background: #ccc;
+    }
   </style>
 </head>
 <body>
