@@ -33,13 +33,13 @@ function printBees(el) {
     bee.className += 'bee'
     bee.setAttribute('id', helperNumber)
     bee.innerHTML = '<div class="bee__wrap">' +
-                    '  <span class="bee__head"></span>' +
-                    '  <span class="bee__body"></span>' +
-                    '  <span class="bee__wings"></span>' +
-                    '  <span class="bee__stinger"></span>' +
+                    '  <div class="bee__head"></div>' +
+                    '  <div class="bee__body"></div>' +
+                    '  <div class="bee__wings"></div>' +
+                    '  <div class="bee__stinger"></div>' +
                     '</div>' +
                     '<div class="lifebar">' +
-                    '   <span class="lifebar__current"></span>' +
+                    '   <div class="lifebar__current"></div>' +
                     '</div>'
     document.getElementsByClassName('bees-content')[0].appendChild(bee)
 
@@ -114,7 +114,7 @@ var listOfWorkers = fabricOfBees(8, 'Worker Bee', 'worker', 75)
 var listOfDrones = fabricOfBees(12, 'Drone Bee', 'drone', 50)
 var btnAttack = document.getElementById('attack')
 var btnStart = document.getElementById('start')
-var allTheBees = getArrayOfBees(queenBee, listOfDrones, listOfWorkers)
+var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones)
 
 btnStart.onclick = function() {
   printBees(allTheBees)

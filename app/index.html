@@ -5,60 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jasmine - Bee Game</title>
   <style media="screen">
+    body { text-align: center; }
+
+    button { margin-top: 30px; }
+
     .bees-content {
       margin: 0 auto;
-      text-align: center;
       width: 800px;
     }
 
     .bee {
       display: inline-block;
-      margin: 10px;
-      width: 60px;
-    }
-
-    .queen {
-      display: block;
-      margin: 0 auto 30px;
-      width: 80px;
+      margin: 10px 35px;
+      width: 50px;
     }
 
     .bee__wrap {
-      background: yellow;
-      border-radius: 100%;
+      position: relative;
+    }
+
+    .bee__body {
+      background: #f5cc61;
+      border-radius: 100px / 100px;
       height: 80px;
       overflow: hidden;
       position: relative;
     }
 
-    .bee__wrap::after,
-    .bee__wrap::before {
-      background: black;
+    .bee__body::after,
+    .bee__body::before {
+      background: #232323;
+      border-radius: 4px;
       content: '';
       height: 10px;
       left: 0;
+      margin-top: 27px;
       position: absolute;
-      top: 15px;
       width: 100%;
     }
 
-    .bee__wrap::before { top: 30px; }
+    .bee__body::before { margin-top: 45px; }
 
-    .queen .bee__wrap {
-      background: orange;
+    .bee__wings::after,
+    .bee__wings::before {
+      background-color: rgba(232, 232, 232, 0.7);
+      border-radius: 50%;
+      content: '';
+      height: 45px;
+      left: -25px;
+      position: absolute;
+      top: 10px;
+      transform: rotate(-50deg);
+      width: 35px;
+      z-index: -1;
+    }
+
+    .bee__wings::before {
+      left: auto;
+      right: -25px;
+      transform: rotate(50deg);
+    }
+
+    .bee__stinger {
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 15px solid #232323;
+      height: 0px;
+      margin: -5px auto 0;
+      width: 0px;
+      z-index: -1;
+    }
+
+    .queen {
+      display: block;
+      margin: 0 auto 30px;
+    }
+
+    .queen .bee__body {
+      background: #ffb62f;
       box-shadow: 0 0 18px #d6a10d;
-      height: 100px;
     }
 
-    .queen .bee__wrap::after,
-    .queen .bee__wrap::before {
-      height: 15px;
-      top: 21px;
-    }
-
-    .queen .bee__wrap::before { top: 45px; }
-
-    .drone .bee__wrap { background: #ccc; }
+    .drone .bee__body { background: #ccc; }
 
     .lifebar {
       background: #C51D1D;
