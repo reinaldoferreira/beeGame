@@ -71,6 +71,7 @@ function attackRandomBee() {
 
       if (allTheBees[beePosition].healthPoints <= 0) {
         if (allTheBees[beePosition].kind === 'queen') {
+          alert('The Queen Bee died! Play again?');
         }
 
         allTheBees.splice(beePosition, 1)
