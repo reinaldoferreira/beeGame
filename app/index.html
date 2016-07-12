@@ -48,7 +48,7 @@
 
     .bee__wings::after,
     .bee__wings::before {
-      animation: beeMoving linear 50ms;
+      animation: beeMoving linear 500ms;
       animation-iteration-count: infinite;
       transform-origin: 50% 50%;
       background-color: rgba(224, 224, 224, 0.7);
@@ -63,14 +63,29 @@
       z-index: -1;
     }
 
-    @keyframes beeMoving{
-      0% { top: 17px; }
-      25% { top: 10px; }
-      50% { top: 17px; }
-      75% { top: 10px; }
-      100% { top: 17px; }
+    .bee:nth-child(odd) .bee__wings::after,
+    .bee:nth-child(odd) .bee__wings::before {
+      animation: beeMoving2 linear 500ms;
+      animation-iteration-count: infinite;
+      transform-origin: 50% 50%;
     }
 
+    @keyframes beeMoving {
+      0% { top: 17px; height: 35px; }
+      25% { top: 10px; height: 45px; }
+      50% { top: 17px; height: 35px; }
+      75% { top: 10px; height: 45px; }
+      100% { top: 17px; height: 35px; }
+    }
+
+    @keyframes beeMoving2 {
+      0% { top: 10px; height: 45px; }
+      25% { top: 17px; height: 35px; }
+      50% { top: 10px; height: 45px; }
+      75% { top: 17px; height: 35px; }
+      100% { top: 10px; height: 45px; }
+    }
+    
     .bee__wings::before {
       left: auto;
       right: -25px;
