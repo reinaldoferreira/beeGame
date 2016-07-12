@@ -17,7 +17,7 @@ describe('Bee', function() {
 })
 
 describe('fabricOfBees()', function() {
-  var listOfTesters = []
+  var listOfTesters
 
   beforeEach(function() {
     listOfTesters = fabricOfBees(2, 'Test Bee', 'test', 100)
@@ -29,19 +29,16 @@ describe('fabricOfBees()', function() {
       jasmine.objectContaining({ name : 'Test Bee 1', kind: 'test', healthPoints : 100 }),
       jasmine.objectContaining({ name : 'Test Bee 2', kind: 'test', healthPoints : 100 })
     ])
+
+    var emptyList = fabricOfBees(0, 'Test Bee', 'test', 100)
+    expect(emptyList).toEqual([])
   })
 })
 
 describe('randomNumber()', function() {
   it('should return a random number', function() {
     expect(randomNumber(2)).toEqual(jasmine.any(Number))
-  })
-})
-
-describe('whichBeeToHit()', function() {
-  it('should return the position of one bee', function() {
-    var listOfTesters = fabricOfBees(2, 'Test Bee', 'test', 100)
-    expect(whichBeeToHit(listOfTesters)).toEqual(jasmine.any(Number))
+    expect(randomNumber(1) + 1).not.toBe(0)
   })
 })
 

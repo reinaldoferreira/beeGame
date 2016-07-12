@@ -21,11 +21,12 @@ function fabricOfBees(numberOfBees, name, kind, healthPoints) {
 
 function randomNumber(number) {
   var random = Math.floor((Math.random() * number))
-  console.log('random number is ' + random)
   return random
 }
 
 function printBees(el) {
+  document.getElementsByClassName('bees-content')[0].innerHTML = ''
+
   for (var i = 0; i < el.length; i++) {
     var helperNumber = i
     var bee = document.createElement('div')
@@ -62,56 +63,33 @@ function getArrayOfBees() {
 function attackRandomBee() {
   var beePosition = randomNumber(allTheBees.length)
 
+  function attackProcess(damage) {
+    var bee = document.getElementById(beePosition)
+
+    if (allTheBees[beePosition].healthPoints >= 0) {
+      allTheBees[beePosition].decreaseHP(damage)
+
+      if (allTheBees[beePosition].healthPoints <= 0) {
+        if (allTheBees[beePosition].kind === 'queen') {
+        }
+
+        allTheBees.splice(beePosition, 1)
+        printBees(allTheBees)
+      }
+    }
+  }
+
   switch (allTheBees[beePosition].kind) {
     case 'drone':
-      console.log('- - - Drone - - -')
-      var bee = document.getElementById(beePosition)
-      console.log(bee)
-
-      if (allTheBees[beePosition].healthPoints >= 0) {
-        allTheBees[beePosition].decreaseHP(12)
-        console.log('The ' + allTheBees[beePosition].name + ' has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints +' of HP')
-
-        if (allTheBees[beePosition].healthPoints <= 0) {
-          allTheBees.splice(beePosition, 1)
-          console.log('... so it is dead!')
-          document.getElementsByClassName('bees-content')[0].innerHTML = ' '
-          printBees(allTheBees)
-        }
-      }
+      attackProcess(12)
       break;
 
     case 'worker':
-      console.log('- - - Worker - - -')
-      var bee = document.getElementById(beePosition)
-      console.log(bee)
-
-      if (allTheBees[beePosition].healthPoints >= 0) {
-        allTheBees[beePosition].decreaseHP(10)
-        console.log('The ' + allTheBees[beePosition].name + ' has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints +' of HP')
-
-        if (allTheBees[beePosition].healthPoints <= 0) {
-          allTheBees.splice(beePosition, 1)
-          console.log('... so it is dead!')
-          document.getElementsByClassName('bees-content')[0].innerHTML = ' '
-          printBees(allTheBees)
-        }
-      }
+      attackProcess(10)
       break;
 
     default:
-      console.log('- - - Queen - - -')
-      var bee = document.getElementById(beePosition)
-      console.log(bee)
-      console.log('inside queen ' + beePosition)
-
-      if (allTheBees[beePosition].healthPoints > 0) {
-        allTheBees[beePosition].decreaseHP(8)
-        console.log('The Queen Bee has been attacked!! Now it has ' + allTheBees[beePosition].healthPoints)
-        if (allTheBees[beePosition].healthPoints < 0) console.log('The Queen Bee died, Play again?')
-      } else {
-        console.log('The Queen Bee is dead, Play again?')
-      }
+      attackProcess(8)
   }
 }
 
@@ -123,13 +101,11 @@ var btnStart = document.getElementById('start')
 var allTheBees = getArrayOfBees(queenBee, listOfDrones, listOfWorkers)
 
 btnStart.onclick = function() {
-  console.log('The has started')
   printBees(allTheBees)
 
   document.body.removeChild(btnStart)
 }
 
 btnAttack.onclick = function() {
-  console.log('Attack')
   attackRandomBee()
 }
