@@ -5,24 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jasmine - Bee Game</title>
   <style media="screen">
-    .bees-content { text-align: center; }
+    .bees-content {
+      margin: 0 auto;
+      text-align: center;
+      width: 800px;
+    }
 
     .bee {
       display: inline-block;
       margin: 10px;
-      width: 30px;
+      width: 60px;
     }
 
     .queen {
       display: block;
       margin: 0 auto 30px;
-      width: 60px;
+      width: 80px;
     }
 
     .bee__wrap {
       background: yellow;
       border-radius: 100%;
-      height: 50px;
+      height: 80px;
       overflow: hidden;
       position: relative;
     }
@@ -43,7 +47,7 @@
     .queen .bee__wrap {
       background: orange;
       box-shadow: 0 0 18px #d6a10d;
-      height: 80px;
+      height: 100px;
     }
 
     .queen .bee__wrap::after,
@@ -57,15 +61,16 @@
     .drone .bee__wrap { background: #ccc; }
 
     .lifebar {
-      background: red;
-      height: 10px;
+      background: #C51D1D;
+      border-radius: 20px 0 0 20px;
+      height: 15px;
       margin-top: 10px;
+      overflow: hidden;
       position: relative;
     }
 
-    .lifebar::after {
-      background: green;
-      content: '';
+    .lifebar__current {
+      background: #2E8F07;
       height: 100%;
       left: 0;
       position: absolute;

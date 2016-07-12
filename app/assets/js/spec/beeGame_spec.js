@@ -73,5 +73,5 @@ describe('getArrayOfBees()', function() {
       jasmine.objectContaining({ name : 'Another Test Bee 2', kind: 'test', healthPoints : 80 }),
       jasmine.objectContaining({ name : 'Another Test Bee 3', kind: 'test', healthPoints : 80 }),
     ])
-  });
-});
+  })
+})

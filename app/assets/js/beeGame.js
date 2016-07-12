@@ -38,18 +38,24 @@ function printBees(el) {
                     '  <span class="bee__wings"></span>' +
                     '  <span class="bee__stinger"></span>' +
                     '</div>' +
-                    '<div class="lifebar"></div>'
-    switch (el[i].kind) {
-      case 'worker':
-        bee.className += ' worker'
-        break;
-      case 'drone':
-        bee.className += ' drone'
-        break;
-      default:
-        bee.className += ' queen'
-    }
+                    '<div class="lifebar">' +
+                    '   <span class="lifebar__current"></span>' +
+                    '</div>'
     document.getElementsByClassName('bees-content')[0].appendChild(bee)
+
+    if (el[i].kind === 'worker') {
+       bee.className += ' worker'
+       var lifeBar = (el[i].healthPoints / 75) * 100
+       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%'
+     } else if (el[i].kind === 'drone') {
+       bee.className += ' drone'
+       var lifeBar = (el[i].healthPoints / 50) * 100
+       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%'
+     } else {
+       bee.className += ' queen'
+       var lifeBar = el[i].healthPoints + '%'
+       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar
+     }
   }
 }
 
@@ -82,10 +88,10 @@ function attackRandomBee() {
         if (allTheBees[beePosition].kind === 'queen') {
           alert('The Queen Bee died! Play again?');
         }
-
         allTheBees.splice(beePosition, 1)
-        printBees(allTheBees)
       }
+
+      printBees(allTheBees)
     }
   }
 
