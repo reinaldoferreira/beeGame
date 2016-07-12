@@ -48,7 +48,10 @@
 
     .bee__wings::after,
     .bee__wings::before {
-      background-color: rgba(232, 232, 232, 0.7);
+      animation: beeMoving linear 50ms;
+      animation-iteration-count: infinite;
+      transform-origin: 50% 50%;
+      background-color: rgba(224, 224, 224, 0.7);
       border-radius: 50%;
       content: '';
       height: 45px;
@@ -58,6 +61,14 @@
       transform: rotate(-50deg);
       width: 35px;
       z-index: -1;
+    }
+
+    @keyframes beeMoving{
+      0% { top: 17px; }
+      25% { top: 10px; }
+      50% { top: 17px; }
+      75% { top: 10px; }
+      100% { top: 17px; }
     }
 
     .bee__wings::before {
