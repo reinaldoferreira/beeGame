@@ -8,18 +8,27 @@
     .bees-content { text-align: center; }
 
     .bee {
-      background: yellow;
-      border-radius: 100%;
       display: inline-block;
-      height: 50px;
       margin: 10px;
-      overflow: hidden;
-      position: relative;
       width: 30px;
     }
 
-    .bee::after,
-    .bee::before {
+    .queen {
+      display: block;
+      margin: 0 auto 30px;
+      width: 60px;
+    }
+
+    .bee__wrap {
+      background: yellow;
+      border-radius: 100%;
+      height: 50px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bee__wrap::after,
+    .bee__wrap::before {
       background: black;
       content: '';
       height: 10px;
@@ -29,27 +38,38 @@
       width: 100%;
     }
 
-    .bee::before { top: 30px; }
+    .bee__wrap::before { top: 30px; }
 
-    .bee.queen {
+    .queen .bee__wrap {
       background: orange;
       box-shadow: 0 0 18px #d6a10d;
-      display: block;
       height: 80px;
-      margin: 0 auto 20px;
-      width: 60px;
     }
 
-    .bee.queen::after,
-    .bee.queen::before {
+    .queen .bee__wrap::after,
+    .queen .bee__wrap::before {
       height: 15px;
       top: 21px;
     }
 
-    .bee.queen::before { top: 45px; }
+    .queen .bee__wrap::before { top: 45px; }
 
-    .bee.drone {
-      background: #ccc;
+    .drone .bee__wrap { background: #ccc; }
+
+    .lifebar {
+      background: red;
+      height: 10px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .lifebar::after {
+      background: green;
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      width: 100%;
     }
   </style>
 </head>

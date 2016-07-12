@@ -32,13 +32,22 @@ function printBees(el) {
     var bee = document.createElement('div')
     bee.className += 'bee'
     bee.setAttribute('id', helperNumber)
-    bee.innerHTML = '<span class="bee__head"></span><span class="bee__body"></span><span class="bee__wings"></span><span class="bee__stinger"></span>'
-    if (el[i].kind === 'worker') {
-      bee.className += ' worker'
-    } else if (el[i].kind === 'drone') {
-      bee.className += ' drone'
-    } else {
-      bee.className += ' queen'
+    bee.innerHTML = '<div class="bee__wrap">' +
+                    '  <span class="bee__head"></span>' +
+                    '  <span class="bee__body"></span>' +
+                    '  <span class="bee__wings"></span>' +
+                    '  <span class="bee__stinger"></span>' +
+                    '</div>' +
+                    '<div class="lifebar"></div>'
+    switch (el[i].kind) {
+      case 'worker':
+        bee.className += ' worker'
+        break;
+      case 'drone':
+        bee.className += ' drone'
+        break;
+      default:
+        bee.className += ' queen'
     }
     document.getElementsByClassName('bees-content')[0].appendChild(bee)
   }
