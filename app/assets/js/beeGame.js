@@ -80,19 +80,22 @@ function attackRandomBee() {
 
   function attackProcess(damage) {
     var bee = document.getElementById(beePosition)
+    bee.className += ' bee--attacked'
 
-    if (allTheBees[beePosition].healthPoints >= 0) {
-      allTheBees[beePosition].decreaseHP(damage)
+    setTimeout(function() {
+      if (allTheBees[beePosition].healthPoints >= 0) {
+        allTheBees[beePosition].decreaseHP(damage)
 
-      if (allTheBees[beePosition].healthPoints <= 0) {
-        if (allTheBees[beePosition].kind === 'queen') {
-          alert('The Queen Bee died! Play again?');
+        if (allTheBees[beePosition].healthPoints <= 0) {
+          if (allTheBees[beePosition].kind === 'queen') {
+            alert('The Queen Bee died! Play again?');
+          }
+          allTheBees.splice(beePosition, 1)
         }
-        allTheBees.splice(beePosition, 1)
+        printBees(allTheBees)
+        btnAttack.className = ''
       }
-
-      printBees(allTheBees)
-    }
+    }, 200);
   }
 
   switch (allTheBees[beePosition].kind) {
@@ -122,6 +125,9 @@ btnStart.onclick = function() {
   document.body.removeChild(btnStart)
 }
 
-btnAttack.onclick = function() {
-  attackRandomBee()
+btnAttack.onclick = function(event) {
+  if (!this.classList.contains('attacking')) {
+    attackRandomBee()
+    this.className += 'attacking'
+  }
 }
