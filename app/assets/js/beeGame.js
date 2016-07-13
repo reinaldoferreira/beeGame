@@ -123,6 +123,7 @@ btnStart.onclick = function() {
   printBees(allTheBees)
 
   document.body.removeChild(btnStart)
+  btnAttack.removeAttribute('disabled')
 }
 
 btnAttack.onclick = function(event) {
