@@ -1,6 +1,6 @@
 .bee {
   display: inline-block;
-  margin: 20px 10px;
+  margin: 20px 35px;
   width: 35px;
 
   &__wrap {
@@ -9,25 +9,23 @@
 
   &__body {
     background: #f5cc61;
-    border-radius: 100px / 100px;
-    height: 60px;
+    height: 35px;
     overflow: hidden;
     position: relative;
 
     &:after,
     &:before {
       background: #232323;
-      border-radius: 4px;
       content: '';
-      height: 10px;
+      height: 7px;
       left: 0;
-      margin-top: 20px;
+      margin-top: 13px;
       position: absolute;
       width: 100%;
     }
 
     &:after {
-      margin-top: 35px;
+      margin-top: 25px;
     }
   }
 
@@ -41,18 +39,18 @@
       background-color: rgba(224, 224, 224, 0.7);
       border-radius: 50%;
       content: '';
-      height: 45px;
-      left: -25px;
+      height: 35px;
+      left: -20px;
       position: absolute;
-      top: 10px;
+      top: 0;
       transform: rotate(-50deg);
-      width: 35px;
+      width: 25px;
       z-index: -1;
     }
 
     &:before {
       left: auto;
-      right: -25px;
+      right: -20px;
       transform: rotate(50deg);
     }
   }
@@ -67,19 +65,47 @@
   }
 
   &__stinger {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 15px solid #232323;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 15px solid #f5cc61;
     height: 0px;
-    margin: -5px auto 0;
+    margin: 0 auto;
     width: 0px;
     z-index: -1;
   }
 }
 
-.bee--queen {}
+.bee--queen {
+  display: block;
+  margin: 0 auto;
+
+  .bee {
+
+    &__body {
+      background: #ffb559;
+    }
+
+    &__stinger {
+      border-top: 15px solid #ffb559;
+    }
+  }
+}
+
 .bee--worker {}
-.bee--drone {}
+
+.bee--drone {
+
+  .bee {
+
+    &__body {
+      background: #d8d8d8;
+    }
+
+    &__stinger {
+      border-top: 15px solid #d8d8d8;
+    }
+  }
+}
 
 .lifebar {
   background: #C51D1D;

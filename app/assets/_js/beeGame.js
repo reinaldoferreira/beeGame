@@ -45,15 +45,15 @@ function printBees(el) {
     document.getElementsByClassName('bees-content')[0].appendChild(bee);
 
     if (el[i].kind === 'worker') {
-       bee.className += ' worker';
+       bee.className += ' bee--worker';
        lifeBar = (el[i].healthPoints / 75) * 100;
        bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%';
      } else if (el[i].kind === 'drone') {
-       bee.className += ' drone';
+       bee.className += ' bee--drone';
        lifeBar = (el[i].healthPoints / 50) * 100;
        bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%';
      } else {
-       bee.className += ' queen';
+       bee.className += ' bee--queen';
        lifeBar = el[i].healthPoints + '%';
        bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar;
      }
