@@ -6,6 +6,8 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var connect = require('gulp-connect');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 
 gulp.task('connect', function() {
   connect.server({
@@ -30,12 +32,12 @@ gulp.task('lint', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('app/assets/_js/*.js')
-    .pipe(concat('scripts.js'))
-    .pipe(rename('scripts.min.js'))
-    .pipe(uglify())
+  return browserify('app/assets/_js/index.js')
+        .bundle()
+    .pipe(source('scripts.min.js'))
+    //.pipe(uglify())
     .pipe(gulp.dest('app/static/js'))
-    .pipe(connect.reload());
+    //.pipe(connect.reload());
 });
 
 gulp.task('watch', function() {

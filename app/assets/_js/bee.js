@@ -19,11 +19,6 @@ function fabricOfBees(numberOfBees, name, kind, healthPoints) {
   return list;
 }
 
-function randomNumber(number) {
-  var random = Math.floor((Math.random() * number));
-  return random;
-}
-
 function printBees(el) {
   document.getElementsByClassName('bees-content')[0].innerHTML = '';
 
@@ -76,64 +71,9 @@ function getArrayOfBees() {
   return list;
 }
 
-function attackRandomBee() {
-  var beePosition = randomNumber(allTheBees.length);
-
-  function attackProcess(damage) {
-    var bee = document.getElementById(beePosition);
-    bee.className += ' bee--attacked';
-
-    setTimeout(function() {
-      if (allTheBees[beePosition].healthPoints >= 0) {
-        allTheBees[beePosition].decreaseHP(damage);
-
-        if (allTheBees[beePosition].healthPoints <= 0) {
-          if (allTheBees[beePosition].kind === 'queen') {
-            alert('The Queen Bee died! Play again?');
-          }
-          allTheBees.splice(beePosition, 1);
-        }
-        printBees(allTheBees);
-        attackingFlag = false;
-      }
-    }, 200);
-  }
-
-  switch (allTheBees[beePosition].kind) {
-    case 'drone':
-      attackProcess(12);
-      break;
-
-    case 'worker':
-      attackProcess(10);
-      break;
-
-    default:
-      attackProcess(8);
-  }
-}
-
-var queenBee = new Bee('Queen Bee', 'queen', 100);
-var listOfWorkers = fabricOfBees(8, 'Worker Bee', 'worker', 75);
-var listOfDrones = fabricOfBees(12, 'Drone Bee', 'drone', 50);
-var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
-var btnAttack = document.getElementById('attack');
-var attackingFlag = false;
-
-printBees(allTheBees);
-
-btnAttack.onclick = function() {
-  if (!attackingFlag) {
-    attackRandomBee();
-    attackingFlag = true;
-  }
-};
-
-document.body.onkeyup = function(key) {
-  if(key.keyCode === 32 || key.keyCode === 13) {
-    if (!attackingFlag) {
-      attackRandomBee();
-      attackingFlag = true;
-    }
-  }
+module.exports = {
+  Bee: Bee,
+  fabricOfBees: fabricOfBees,
+  printBees: printBees,
+  getArrayOfBees: getArrayOfBees
 };
