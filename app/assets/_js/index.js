@@ -68,4 +68,4 @@ document.body.onkeyup = function(key) {
       attackingFlag = true;
     }
   }
-}
+};

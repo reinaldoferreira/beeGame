@@ -7,9 +7,30 @@
     position: relative;
   }
 
+  &__head {
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+
+    &:after,
+    &:before {
+      background: #232323;
+      content: '';
+      display: inline-block;
+      height: 5px;
+      margin: 0 2px;
+      width: 2px;
+    }
+
+    &:after {
+      left: 20px;
+    }
+  }
+
   &__body {
     background: #f5cc61;
-    height: 35px;
+    border-radius: 100% 100% 0 0;
+    height: 40px;
     overflow: hidden;
     position: relative;
 
@@ -19,13 +40,13 @@
       content: '';
       height: 7px;
       left: 0;
-      margin-top: 13px;
+      margin-top: 20px;
       position: absolute;
       width: 100%;
     }
 
     &:after {
-      margin-top: 25px;
+      margin-top: 33px;
     }
   }
 
@@ -81,6 +102,16 @@
 
   .bee {
 
+    &__head {
+
+      &:after,
+      &:before {
+        background: #0d95d8;
+        border-radius: 100%;
+        width: 4px;
+      }
+    }
+
     &__body {
       background: #ffb559;
     }
@@ -97,12 +128,20 @@
 
   .bee {
 
+    &__head {
+
+      &:after,
+      &:before {
+        background: #d03737;
+      }
+    }
+
     &__body {
-      background: #d8d8d8;
+      background: #c5c4c4;
     }
 
     &__stinger {
-      border-top: 15px solid #d8d8d8;
+      border-top: 15px solid #c5c4c4;
     }
   }
 }
