@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var os = require('os');
 var sass = require('gulp-sass');
 var jshint = require('gulp-jshint')
 var concat = require('gulp-concat');
@@ -8,6 +9,7 @@ var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var open = require('gulp-open');
 
 gulp.task('connect', function() {
   connect.server({
@@ -15,6 +17,11 @@ gulp.task('connect', function() {
     fallback: 'app/index.html',
     livereload: true
   });
+});
+
+gulp.task('open', function(){
+  gulp.src('')
+  .pipe(open({uri: 'http://localhost:8000'}));
 });
 
 gulp.task('sass', function() {
@@ -46,4 +53,4 @@ gulp.task('watch', function() {
   gulp.watch('app/*.html').on('change', livereload.changed);
 })
 
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch', 'connect']);
+gulp.task('default', ['lint', 'sass', 'scripts', 'watch', 'connect', 'open']);
