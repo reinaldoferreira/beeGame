@@ -13,7 +13,7 @@ function attackRandomBee() {
 
   function attackProcess(damage) {
     var bee = document.getElementById(beePosition);
-    bee.className += ' bee--attacked';
+    bee.className += ' is-bee--attacked';
 
     setTimeout(function() {
       if (allTheBees[beePosition].healthPoints >= 0) {

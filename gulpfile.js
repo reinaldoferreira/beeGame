@@ -18,7 +18,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('sass', function() {
-  return gulp.src('app/assets/_scss/**/**.scss')
+  return gulp.src('./app/assets/_scss/**/*.sass')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(concat('styles.min.css'))
     .pipe(gulp.dest('app/static/css'))
@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch('app/assets/_js/*.js', ['lint', 'scripts']).on('change', livereload.changed);
-  gulp.watch('app/assets/_scss/*.scss', ['sass']).on('change', livereload.changed);
+  gulp.watch('app/assets/_scss/**/*.sass', ['sass']).on('change', livereload.changed);
   gulp.watch('app/*.html').on('change', livereload.changed);
 })
 
