@@ -1,3 +1,8 @@
+var Bee = require('../app/assets/_js/bee').Bee;
+var fabricOfBees = require('../app/assets/_js/bee').fabricOfBees;
+var printBees = require('../app/assets/_js/bee').printBees;
+var getArrayOfBees = require('../app/assets/_js/bee').getArrayOfBees;
+
 describe('Bee', function() {
   var beeTest
 
@@ -32,13 +37,6 @@ describe('fabricOfBees()', function() {
 
     var emptyList = fabricOfBees(0, 'Test Bee', 'test', 100)
     expect(emptyList).toEqual([])
-  })
-})
-
-describe('randomNumber()', function() {
-  it('should return a random number', function() {
-    expect(randomNumber(2)).toEqual(jasmine.any(Number))
-    expect(randomNumber(1) + 1).not.toBe(0)
   })
 })
 
