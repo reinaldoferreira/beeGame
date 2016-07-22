@@ -4,3 +4,17 @@
 	-ms-border-radius: $radius
 	-o-border-radius: $radius
 	border-radius: $radius
+
+=font-rendering
+  text-rendering: optimizeLegibility
+  moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+=gradient($color1, $color2)
+  background: $color1
+  background: -webkit-linear-gradient(to left, $color1 , $color2)
+  background: linear-gradient(to left, $color1 , $color2)

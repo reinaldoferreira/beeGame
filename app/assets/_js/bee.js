@@ -20,7 +20,7 @@ function fabricOfBees(numberOfBees, name, kind, healthPoints) {
 }
 
 function printBees(el) {
-  document.getElementsByClassName('bees-content')[0].innerHTML = '';
+  document.getElementById('beesContent').innerHTML = '';
 
   for (var i = 0; i < el.length; i++) {
     var helperNumber = i;
@@ -37,7 +37,7 @@ function printBees(el) {
                     '<div class="lifebar">' +
                     '   <div class="lifebar__current"></div>' +
                     '</div>';
-    document.getElementsByClassName('bees-content')[0].appendChild(bee);
+    document.getElementById('beesContent').appendChild(bee);
 
     if (el[i].kind === 'worker') {
        bee.className += ' bee--worker';
