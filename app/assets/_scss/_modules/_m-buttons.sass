@@ -1,5 +1,19 @@
 .btn
-  border: none
+  +transition(all 150ms linear)
+  border: 1px solid transparent
   cursor: pointer
-  font-weight: bold
-  text-transform: uppercase
+  display: inline-block
+  height: 34px
+  padding: 0 15px
+  text-align: center
+  vertical-align: middle
+  
+.btn--attack
+  background: rgba($danger, 0.8)
+  color: white
+  display: block
+  font-weight: 600
+  margin-bottom: 30px
+
+  &:hover
+    background: rgba($danger, 1)

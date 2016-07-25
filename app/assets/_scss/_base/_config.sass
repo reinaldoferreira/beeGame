@@ -1,4 +1,51 @@
-$queen_bee_color	: #ffb559
-$worker_bee_color	: #f5cc61
-$drone_bee_color 	: #c5c4c4
-$bee_wings			: #e0e0e0
+*
+  box-sizing: border-box
+
+html
+  -webkit-tap-highlight-color: transparent;
+
+html, body
+  overflow-x: hidden
+
+body
+  +font-rendering
+  font-family: $font
+  font-size: 1em
+  line-height: 1.4
+  margin: 0
+
+p
+  color: $text_color
+  line-height: 1.6
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 400
+
+.title
+  color: $subtitle
+  font-size: 1.5em
+  position: relative
+
+  &:after
+    background: $color01
+    bottom: 0
+    content: ''
+    display: block
+    height: 3px
+    left: 0
+    width: 25px
+
+.container
+  max-width: 680px
+  padding: 0 10px
+
+  &:before,
+  &:after
+    content: ''
+    display: table
+
+.box-center
+  margin: 0 auto
+
+.text-center
+  text-align: center

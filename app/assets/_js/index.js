@@ -46,8 +46,8 @@ function attackRandomBee() {
 }
 
 var queenBee = new Bee('Queen Bee', 'queen', 100);
-var listOfWorkers = fabricOfBees(8, 'Worker Bee', 'worker', 75);
-var listOfDrones = fabricOfBees(12, 'Drone Bee', 'drone', 50);
+var listOfWorkers = fabricOfBees(5, 'Worker Bee', 'worker', 75);
+var listOfDrones = fabricOfBees(8, 'Drone Bee', 'drone', 50);
 var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
 var btnAttack = document.getElementById('attack');
 var attackingFlag = false;
