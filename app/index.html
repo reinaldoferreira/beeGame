@@ -4,27 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bee Game</title>
-  <link href='//fonts.googleapis.com/css?family=Josefin+Sans:300,400,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link rel="stylesheet" href="app/static/css/styles.min.css">
 </head>
 <body>
   <header class="header al-center">
+    <a class="github-fork-ribbon right-top" href="https://github.com/reinaldoferreira/beeGame" title="Fork me on GitHub">Fork me on GitHub</a>
     <div class="container box-center text-center">
-      <img src="" alt="bee">
       <h1 class="header__title">Bee Game</h1>
       <h2 class="header__subtitle">A simple game that I've made to test some stuffs</h2>
     </div>
   </header>
-  <section class="container description box-center">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam quasi omnis earum laboriosam quisquam ullam error harum enim magni alias. Aspernatur esse veniam odio consequuntur voluptate porro, quisquam praesentium veritatis!</p>
+  <section class="container box-center description">
+    <h1 class="title">The Game</h1>
+    <p>Bee Game is a game based on a test for a job interview application. Initially it was just another test for another job application but then I decided to learn Jasmine and found to be a good opportunity to finish the game</p>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil neque, ut ex animi recusandae voluptate repudiandae similique ipsa accusantium nemo vero. Inventore labore unde, quo error esse dicta excepturi sequi.</p>
+    <h1 class="title">Bees</h1>
+    <ul>
+      <li><h3>Queen Bee</h3></li>
+      <ul>
+        <li>The Queen Bee has a lifespan of <b>100 Hit Points</b></li>
+        <li>When the Queen Bee is hit, <b>8 Hit Points</b> are deducted from her lifespan</li>
+        <li>If/When the Queen Bee has run out of Hit Points, <b>All remaining alive Bees automatically run out of hit points</b></li>
+        <li>There is onlye <b>1</b> Queen Bee</li>
+      </ul>
+      <li><h3>Worker Bee</h3></li>
+      <ul>
+        <li>Worker Bees have a lifespan of <b>75 Hit Points</b></li>
+        <li>When a Worker Bee is hit, <b>10 Hit Points</b> are deducted from her lifespan</li>
+        <li>There are <b>5</b> Worker Bees</li>
+      </ul>
+      <li><h3>Drone Bee</h3></li>
+      <ul>
+        <li>Drone Bees have a lifespan of <b>50 Hit Points</b></li>
+        <li>When a Drone Bee is hit, <b>12 Hit Points</b> are deducted from her lifespan</li>
+        <li>There are <b>8</b> Drone Bees</li>
+      </ul>
+    </ul>
+
+    <h1 class="title">Gameplay</h1>
+    <p>To play the game you just need to hit the <b>Attack</b> button, one the button is pressed the game will select one bee randomly.</p>
+    <p>The main objective of the game is to tray kill all the bees but the Queen Bee. If the Queen Bee dies before all the other bees you loose otherwise you win!</p>
   </section>
 
-  <div class="container box-center text-center" id="beesContent"></div>
+  <div class="container box-center text-center bees-box" id="beesContent"></div>
   
-  <button type="button" name="btn_attack" id="attack" class="btn">Attack!!</button>
+  <button type="button" name="btn_attack" id="attack" class="btn btn--attack box-center">Attack!!</button>
   
   <!-- Source files -->
   <script type="text/javascript" src="app/static/js/scripts.min.js"></script>

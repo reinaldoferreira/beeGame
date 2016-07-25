@@ -18,6 +18,23 @@ p
   color: $text_color
   line-height: 1.6
 
+h1, h2, h3, h4, h5, h6
+  font-weight: 400
+
+.title
+  color: $subtitle
+  font-size: 1.5em
+  position: relative
+
+  &:after
+    background: $color01
+    bottom: 0
+    content: ''
+    display: block
+    height: 3px
+    left: 0
+    width: 25px
+
 .container
   max-width: 680px
   padding: 0 10px
