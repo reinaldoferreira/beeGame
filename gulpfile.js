@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var os = require('os');
+// var os = require('os');
 var sass = require('gulp-sass');
 var jshint = require('gulp-jshint')
 var concat = require('gulp-concat');
@@ -10,6 +10,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var open = require('gulp-open');
+var babel = require('babelify');
 
 gulp.task('connect', function() {
   connect.server({
@@ -39,6 +40,9 @@ gulp.task('lint', function() {
 
 gulp.task('scripts', function() {
   return browserify('app/assets/_js/index.js')
+    .transform(babel.configure({
+      "presets": ["es2015"]
+    }))
     .bundle()
     .pipe(source('scripts.min.js'))
     .pipe(buffer())
