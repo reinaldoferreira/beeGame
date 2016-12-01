@@ -1,3 +1,5 @@
+"use strict";
+
 class Bee {
   constructor(type, healthPoints) {
     this.type = type;
@@ -15,35 +17,34 @@ class Bee {
   }
 }
 
-// const fabricOfBees = (numberOfBees, kind, healthPoints) => {
-//   let list = [];
-//
-//   for (var i = 0; i < numberOfBees; i++) {
-//     list[i] = new Bee(kind, healthPoints);
-//   }
-//
-//   return list;
-// }
-//
-// const getArrayOfBees = () => {
-//   let list = [];
-//
-//   for (var i = 0; i < arguments.length; i++) {
-//     if (!(arguments[i] instanceof Array)) {
-//       list.push(arguments[i]);
-//     } else {
-//       for (var j = 0; j < arguments[i].length; j++) {
-//         list.push(arguments[i][j]);
-//       }
-//     }
-//   }
-//
-//   return list;
-// }
+const fabricOfBees = (numberOfBees, kind, healthPoints) => {
+  let list = [];
+
+  for (var i = 0; i < numberOfBees; i++) {
+    list[i] = new Bee(kind, healthPoints);
+  }
+
+  return list;
+}
+
+const getArrayOfBees = () => {
+  let list = [];
+
+  for (var i = 0; i < arguments.length; i++) {
+    if (!(arguments[i] instanceof Array)) {
+      list.push(arguments[i]);
+    } else {
+      for (var j = 0; j < arguments[i].length; j++) {
+        list.push(arguments[i][j]);
+      }
+    }
+  }
+
+  return list;
+}
 
 module.exports = {
   Bee: Bee,
   fabricOfBees: fabricOfBees,
-  printBees: printBees,
   getArrayOfBees: getArrayOfBees
 };
