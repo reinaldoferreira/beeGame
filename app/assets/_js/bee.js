@@ -1,62 +1,33 @@
-function Bee(name, kind, healthPoints) {
-  this.name = name;
-  this.kind = kind;
-  this.healthPoints = healthPoints;
+class Bee {
+  constructor(type, healthPoints) {
+    this.type = type;
+    this.healthPoints = healthPoints;
+  }
+
+  decreaseHP = (n) => this.healthPoints -= n;
+
+  printBee = () => {
+    let bee = document.createElement('div');
+    let beeStructure = '<div class="bee__wrap"><div class="bee__head"></div><div class="bee__body"></div><div class="bee__wings"></div><div class="bee__stinger"></div></div>
+    <div class="lifebar"><div class="lifebar__life" style="width:'+ this.healthPoints +'%"></div></div>';
+    bee.className += 'bee';
+    bee.innerHTML = beeStructure;
+    document.getElementById('beesContent').appendChild(bee);
+  }
 }
 
-Bee.prototype.decreaseHP = function (pointsToDecrease) {
-  return this.healthPoints -= pointsToDecrease;
-};
-
-function fabricOfBees(numberOfBees, name, kind, healthPoints) {
-  var list = [];
+const fabricOfBees = (numberOfBees, kind, healthPoints) => {
+  let list = [];
 
   for (var i = 0; i < numberOfBees; i++) {
-    var beeNameHelper = i + 1;
-    list[i] = new Bee(name + ' ' + beeNameHelper, kind, healthPoints);
+    list[i] = new Bee(kind, healthPoints);
   }
 
   return list;
 }
 
-function printBees(el) {
-  document.getElementById('beesContent').innerHTML = '';
-
-  for (var i = 0; i < el.length; i++) {
-    var helperNumber = i;
-    var lifeBar;
-    var bee = document.createElement('div');
-    bee.className += 'bee';
-    bee.setAttribute('id', helperNumber);
-    bee.innerHTML = '<div class="bee__wrap">' +
-                    '  <div class="bee__head"></div>' +
-                    '  <div class="bee__body"></div>' +
-                    '  <div class="bee__wings"></div>' +
-                    '  <div class="bee__stinger"></div>' +
-                    '</div>' +
-                    '<div class="lifebar">' +
-                    '   <div class="lifebar__current"></div>' +
-                    '</div>';
-    document.getElementById('beesContent').appendChild(bee);
-
-    if (el[i].kind === 'worker') {
-       bee.className += ' bee--worker';
-       lifeBar = (el[i].healthPoints / 75) * 100;
-       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%';
-     } else if (el[i].kind === 'drone') {
-       bee.className += ' bee--drone';
-       lifeBar = (el[i].healthPoints / 50) * 100;
-       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar + '%';
-     } else {
-       bee.className += ' bee--queen';
-       lifeBar = el[i].healthPoints + '%';
-       bee.getElementsByClassName('lifebar__current')[0].style.width = lifeBar;
-     }
-  }
-}
-
-function getArrayOfBees() {
-  var list = [];
+const getArrayOfBees = () => {
+  let list = [];
 
   for (var i = 0; i < arguments.length; i++) {
     if (!(arguments[i] instanceof Array)) {
