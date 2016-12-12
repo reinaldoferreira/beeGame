@@ -1,13 +1,3 @@
-var Bee = require('./bee').Bee;
-var fabricOfBees = require('./bee').fabricOfBees;
-var printBees = require('./bee').printBees;
-var getArrayOfBees = require('./bee').getArrayOfBees;
-
-function randomNumber(number) {
-  var random = Math.floor((Math.random() * number));
-  return random;
-}
-
 function attackProcess(beePosition, damage) {
   var bee = document.getElementById(beePosition);
   bee.className += ' is-bee--attacked';
@@ -50,12 +40,6 @@ function attackRandomBee() {
   }
 }
 
-var queenBee = new Bee('Queen Bee', 'queen', 100);
-var listOfWorkers = fabricOfBees(5, 'Worker Bee', 'worker', 75);
-var listOfDrones = fabricOfBees(8, 'Drone Bee', 'drone', 50);
-var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
-var btnAttack = document.getElementById('attack');
-var attackingFlag = false;
 
 printBees(allTheBees);
 

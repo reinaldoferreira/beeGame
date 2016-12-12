@@ -7,7 +7,7 @@ describe('Bee', function() {
   var beeTest
 
   beforeEach(function() {
-    beeTest = new Bee('worker', 100)
+    beeTest = new Bee('test', 100)
   })
 
   it('should create an instance of Bee', function() {
@@ -15,7 +15,7 @@ describe('Bee', function() {
   })
 
   it('should set all the properties', function() {
-    expect(beeTest.type).toEqual('worker')
+    expect(beeTest.type).toEqual('test')
     expect(beeTest.healthPoints).toEqual(100)
   })
 })
