@@ -1,42 +1,54 @@
-var Bee = require('./bee').Bee;
-var fabricOfBees = require('./bee').fabricOfBees;
-var printBees = require('./bee').printBees;
-var getArrayOfBees = require('./bee').getArrayOfBees;
+const Bee = require('./bee').Bee;
+const fabricOfBees = require('./bee').fabricOfBees;
+const printBees = require('./bee').printBees;
+const getArrayOfBees = require('./bee').getArrayOfBees;
+const randomNumber = require('./helpers').randomNumber;
 
-function randomNumber(number) {
-  var random = Math.floor((Math.random() * number));
-  return random;
+var queenBee = new Bee('queen', 100);
+var listOfWorkers = fabricOfBees(5,'worker', 75);
+var listOfDrones = fabricOfBees(8, 'drone', 50);
+var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
+const btnAttack = document.getElementById('attack');
+var attackingFlag = false;
+
+// change this... \/
+function printBee() {
+  for (var i = 0; i < allTheBees.length; i++) {
+    allTheBees[i].printBee();
+  }
 }
+printBee();
+//  #---------------- #
 
-function attackProcess(beePosition, damage) {
-  var bee = document.getElementById(beePosition);
-  bee.className += ' is-bee--attacked';
+const attackProcess = (beePosition, damage) => {
+  allTheBees[beePosition].className += ' is-bee--attacked';
 
-  setTimeout(function() {
+  setTimeout(() => {
     if (allTheBees[beePosition].healthPoints >= 0) {
       allTheBees[beePosition].decreaseHP(damage);
 
       if (allTheBees[beePosition].healthPoints <= 0) {
-        if (allTheBees[beePosition].kind === 'queen') {
+        if (allTheBees[beePosition].type === 'queen') {
           alert('The Queen Bee died! You lose and the will be restarted');
-          queenBee = new Bee('Queen Bee', 'queen', 100);
-          listOfWorkers = fabricOfBees(5, 'Worker Bee', 'worker', 75);
-          listOfDrones = fabricOfBees(8, 'Drone Bee', 'drone', 50);
+          queenBee = new Bee('queen', 100);
+          listOfWorkers = fabricOfBees(5, 'worker', 75);
+          listOfDrones = fabricOfBees(8, 'drone', 50);
           allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
         } else {
           allTheBees.splice(beePosition, 1);
         }
       }
-      printBees(allTheBees);
       attackingFlag = false;
+      document.getElementById('gameBoard').innerHTML = '';
+      printBee()
     }
-  }, 200);
+  }, 1000);
 }
 
-function attackRandomBee() {
-  var beePosition = randomNumber(allTheBees.length);
+const attackRandomBee = () => {
+  let beePosition = randomNumber(allTheBees.length);
 
-  switch (allTheBees[beePosition].kind) {
+  switch (allTheBees[beePosition].type) {
     case 'drone':
       attackProcess(beePosition, 12);
       break;
@@ -49,15 +61,6 @@ function attackRandomBee() {
       attackProcess(beePosition, 8);
   }
 }
-
-var queenBee = new Bee('Queen Bee', 'queen', 100);
-var listOfWorkers = fabricOfBees(5, 'Worker Bee', 'worker', 75);
-var listOfDrones = fabricOfBees(8, 'Drone Bee', 'drone', 50);
-var allTheBees = getArrayOfBees(queenBee, listOfWorkers, listOfDrones);
-var btnAttack = document.getElementById('attack');
-var attackingFlag = false;
-
-printBees(allTheBees);
 
 btnAttack.onclick = function() {
   if (!attackingFlag) {
