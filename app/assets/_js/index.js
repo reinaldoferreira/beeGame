@@ -18,9 +18,10 @@ function printBee() {
   }
 }
 printBee();
+//  #---------------- #
 
 const attackProcess = (beePosition, damage) => {
-  // bee.className += ' is-bee--attacked';
+  allTheBees[beePosition].className += ' is-bee--attacked';
 
   setTimeout(() => {
     if (allTheBees[beePosition].healthPoints >= 0) {
@@ -41,7 +42,7 @@ const attackProcess = (beePosition, damage) => {
       document.getElementById('gameBoard').innerHTML = '';
       printBee()
     }
-  }, 200);
+  }, 1000);
 }
 
 const attackRandomBee = () => {
