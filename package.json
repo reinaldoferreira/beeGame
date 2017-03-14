@@ -2,7 +2,6 @@
   "name": "beeGame",
   "version": "1.0.0",
   "description": "simple bee game to try jasmine",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
